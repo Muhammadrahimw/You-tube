@@ -13,33 +13,38 @@ import {FiDownload} from "react-icons/fi";
 import {AiOutlineScissor} from "react-icons/ai";
 import {FaYoutube} from "react-icons/fa";
 import {FaMicrophone, FaSearch} from "react-icons/fa";
+import {useNavigate} from "react-router-dom";
 
 function Layout() {
+	const navigate = useNavigate();
+	const navigating = (id) => {
+		navigate(`/${id}`);
+	};
 	return (
 		<main className="flex">
 			<section className="px-4 py-4 nav w-[17em]">
-				<Link to="/home">
-					<div className="flex items-center gap-[0.1em] text-3xl w-2xl logo pb-4">
-						<FaYoutube className="text-3xl text-red-500" />
-						<p className="tracking-tighter text-white">YouTube</p>
-					</div>
-				</Link>
+				<div
+					onClick={() => navigating(`home`)}
+					className="flex items-center gap-[0.1em] text-3xl w-2xl logo pb-4 cursor-pointer">
+					<FaYoutube className="text-3xl text-red-500" />
+					<p className="tracking-tighter text-white">YouTube</p>
+				</div>
 				<div className="parts">
-					<Link to="/home">
-						<div className="text-white flex items-center gap-[1.5em] py-2 pl-2">
-							<AiFillHome className="text-2xl text-white " /> <p>Home</p>
-						</div>
-					</Link>
-					<Link to="*">
-						<div className="text-white flex items-center gap-[1.5em] py-2 pl-2">
-							<RiMovieLine className="text-2xl text-white" /> Shorts
-						</div>
-					</Link>
-					<Link to="*">
-						<div className="text-white flex items-center gap-[1.5em] py-2 pl-2">
-							<MdSubscriptions className="text-2xl text-white" /> Subscriptions
-						</div>
-					</Link>
+					<div
+						onClick={() => navigating(`home`)}
+						className="text-white flex items-center gap-[1.5em] py-2 pl-2">
+						<AiFillHome className="text-2xl text-white " /> <p>Home</p>
+					</div>
+					<div
+						onClick={() => navigating(`*`)}
+						className="text-white flex items-center gap-[1.5em] py-2 pl-2">
+						<RiMovieLine className="text-2xl text-white" /> Shorts
+					</div>
+					<div
+						onClick={() => navigating(`*`)}
+						className="text-white flex items-center gap-[1.5em] py-2 pl-2">
+						<MdSubscriptions className="text-2xl text-white" /> Subscriptions
+					</div>
 				</div>
 				<hr className="my-4 border border-gray-700 hr" />
 				<div className="parts">

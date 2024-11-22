@@ -1,6 +1,7 @@
 import React from "react";
 import {Link, useLocation} from "react-router-dom";
 import VideoList from "../VideoList";
+import {useNavigate} from "react-router-dom";
 
 function Nav() {
 	const videos = [
@@ -90,6 +91,10 @@ function Nav() {
 		},
 	];
 
+	const navigate = useNavigate();
+	const navigating = (url) => {
+		navigate(url);
+	};
 	return (
 		<section className="flex flex-col">
 			<div className="flex flex-wrap gap-3">
@@ -133,23 +138,23 @@ function Nav() {
 			<div className="grid grid-cols-4 gap-4 pt-4">
 				{videos.map((video) => (
 					<div key={video.id} className="w-full cursor-pointer">
-						<Link to={`/video/${video.id}`}>
-							<div className="w-full h-[10em]">
-								<img
-									className="object-cover w-full h-full rounded-md"
-									src={video.videoUrl}
-									alt=""
-								/>
+						<div
+							onClick={() => navigating(`/video/${video.id}`)}
+							className="w-full h-[10em]">
+							<img
+								className="object-cover w-full h-full rounded-md"
+								src={video.videoUrl}
+								alt=""
+							/>
+						</div>
+						<div className="flex items-start gap-4 mt-2">
+							<div className="w-8 h-8 bg-blue-300 rounded-full"></div>
+							<div className="text-white">
+								<p className="">{video.title}</p>
+								<p className="text-sm text-gray-400">{video.channel}</p>
+								<p className="text-sm text-gray-400">{video.views}</p>
 							</div>
-							<div className="flex items-start gap-4 mt-2">
-								<div className="w-8 h-8 bg-blue-300 rounded-full"></div>
-								<div className="text-white">
-									<p className="">{video.title}</p>
-									<p className="text-sm text-gray-400">{video.channel}</p>
-									<p className="text-sm text-gray-400">{video.views}</p>
-								</div>
-							</div>
-						</Link>
+						</div>
 					</div>
 				))}
 			</div>
