@@ -1,4 +1,6 @@
 import React from "react";
+import {Link, useLocation} from "react-router-dom";
+import VideoList from "../VideoList";
 
 function Nav() {
 	const videos = [
@@ -40,7 +42,7 @@ function Nav() {
 		{
 			id: 6,
 			title: "Advanced React Patterns",
-			videoUrl: "https://img.youtube.com/vi/GHkW6RFMQSU/hqdefault.jpg",
+			// videoUrl: "https://img.youtube.com/vi/GHkW6RFMQSU/hqdefault.jpg",
 			channel: "The Net Ninja",
 			views: "500K views",
 		},
@@ -54,7 +56,7 @@ function Nav() {
 		{
 			id: 8,
 			title: "React Router 6 Tutorial",
-			videoUrl: "https://img.youtube.com/vi/qjHnaUsrkNQ/hqdefault.jpg",
+			// videoUrl: "https://img.youtube.com/vi/qjHnaUsrkNQ/hqdefault.jpg",
 			channel: "The Net Ninja",
 			views: "620K views",
 		},
@@ -131,24 +133,27 @@ function Nav() {
 			<div className="grid grid-cols-4 gap-4 pt-4">
 				{videos.map((video) => (
 					<div key={video.id} className="w-full cursor-pointer">
-						<div className="w-full h-36">
-							<img
-								className="object-cover w-full h-full rounded-md"
-								src={video.videoUrl}
-								alt=""
-							/>
-						</div>
-						<div className="flex items-start gap-4 mt-2">
-							<div className="w-8 h-8 bg-blue-300 rounded-full"></div>
-							<div className="text-white">
-								<p className="">{video.title}</p>
-								<p className="text-sm text-gray-400">{video.channel}</p>
-								<p className="text-sm text-gray-400">{video.views}</p>
+						<Link to={`/video/${video.id}`}>
+							<div className="w-full h-[10em]">
+								<img
+									className="object-cover w-full h-full rounded-md"
+									src={video.videoUrl}
+									alt=""
+								/>
 							</div>
-						</div>
+							<div className="flex items-start gap-4 mt-2">
+								<div className="w-8 h-8 bg-blue-300 rounded-full"></div>
+								<div className="text-white">
+									<p className="">{video.title}</p>
+									<p className="text-sm text-gray-400">{video.channel}</p>
+									<p className="text-sm text-gray-400">{video.views}</p>
+								</div>
+							</div>
+						</Link>
 					</div>
 				))}
 			</div>
+			<VideoList videos={videos} />
 		</section>
 	);
 }
