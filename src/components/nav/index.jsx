@@ -92,6 +92,7 @@ function Nav() {
 	];
 
 	const navigate = useNavigate();
+	// !localStorage.getItem(`login`) ? navigate(`/login`) : navigate(`/home`);
 	const navigating = (url) => {
 		navigate(url);
 	};
